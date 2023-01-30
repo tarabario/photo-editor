@@ -5,6 +5,7 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="./css/style.css">
 		<link rel="stylesheet" href="./css/mynormalize.min.css">
 		<script src="main.js" defer></script>
@@ -12,17 +13,51 @@
 	</head>
 
 	<body>
-		<div id="app-container">
-			<div id="tapbar">test.jpeg</div>
 
+
+		<div id="app-container">
 			<div id="photo-container">
 				<p>Drag your photo here</p>
 				<p>or</p>
-				<button id="upload-button">Upload photo</button>
+				<button class="upload-button button">press</button>
 			</div>
 
-			<div id="setting-container"></div>
+			<div id="setting-container">
+				<label for="brightness">Brightness</label>
+				<div class="slider-wrapper">
+					<input id="brightness" name="brightness" type="range" min="0" max="200" value="100">
+					<span class="setting-value"></span>
+				</div>
+				
+				<label for="contrast">Contrast</label>
+				<div class="slider-wrapper">
+					<input id="contrast" name="contrast" type="range" min="0" max="200" value="100">
+					<span class="setting-value"></span>
+				</div>
+				
+				<label for="grayscale">Grayscale</label>
+				<div class="slider-wrapper">
+					<input id="grayscale" name="grayscale" type="range" min="0" max="100" value="0">
+					<span class="setting-value"></span>
+				</div>
+				
+				<label for="sarurate">Saruration</label>
+				<div class="slider-wrapper">
+					<input id="sarurate" name="sarurate" type="range" min="1" max="100" value="1">
+					<span class="setting-value"></span>
+				</div>
+				
+				<label for="hue-rotate">Hue</label>
+				<div class="slider-wrapper">
+					<input id="hue-rotate" name="hue-rotate" type="range" min="0" max="359" value="0">
+					<span class="setting-value"></span>
+				</div>
+				
+				<div id="setting-buttons-wrapper">
+					<button class="reset-button button">reset</button>
+					<button class="save-button button">save</button>
+				</div>
+			</div>
 		</div>
 	</body>
-
 </html>
