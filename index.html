@@ -17,9 +17,10 @@
 
 		<div id="app-container">
 			<div id="photo-container">
-				<p>Drag your photo here</p>
+				<p>Drag your image here</p>
 				<p>or</p>
-				<button class="upload-button button">press</button>
+				<label for="file" class="upload-button button">select in folder</label>
+				<input type="file" id="file" name="file" accept="image/*" hidden="true">
 			</div>
 
 			<div id="setting-container">
@@ -41,9 +42,15 @@
 					<span class="value-imager"></span>
 				</div>
 				
+				<label for="opacity">Opacity</label>
+				<div class="slider-wrapper">
+					<input id="opacity" name="opacity" type="range" min="0" max="100" value="100">
+					<span class="value-imager"></span>
+				</div>
+				
 				<label for="sarurate">Saruration</label>
 				<div class="slider-wrapper">
-					<input id="sarurate" name="sarurate" type="range" min="1" max="100" value="1">
+					<input id="sarurate" name="sarurate" type="range" min="1" max="200" value="100">
 					<span class="value-imager"></span>
 				</div>
 				
