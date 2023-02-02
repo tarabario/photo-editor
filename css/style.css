@@ -1,4 +1,4 @@
-#photo-container * {pointer-events: none;}
+#photo-container *:not(.upload-button) {pointer-events: none;}
 
 :root {
 	--font-main: 'Roboto', sans-serif;
@@ -13,7 +13,7 @@
 	--grayscale: grayscale(0%);
 	--saturate: saturate(100%);
 	--opacity: opacity(100%);
-	--hue-rotate: hue-rotate(0);
+	--hue-rotate: hue-rotate(0deg);
 }
 
 * {
@@ -161,4 +161,8 @@ input[type='range']::-moz-range-thumb {
 		var(--saturate)
 		var(--opacity)
 		var(--hue-rotate)
+}
+
+.uploadButton {
+	cursor: pointer;
 }

@@ -21,44 +21,48 @@
 				<p>Drag your image here</p>
 				<p>or</p>
 				<label for="file" class="upload-button button">select in folder</label>
-				<input type="file" id="file" name="file" accept="image/*" hidden="true">
+				<input type="file" id="file" name="file" accept="image/*" hidden>
 				<i class="fa-solid fa-image" hidden></i>
+				<canvas id="image-canvas"hidden></canvas>
+				<div class="image-box"hidden>
+					<img class="source-image" src="" alt="" hidden>
+				</div>
 			</div>
 
 			<div id="setting-container">
 				<label for="brightness">Brightness</label>
 				<div class="slider-wrapper">
-					<input id="brightness" name="brightness" type="range" min="0" max="200" value="100">
+					<input id="brightness" name="brightness" type="range" min="0" max="200" value="100" data-initial="100">
 					<span class="value-imager"></span>
 				</div>
 				
 				<label for="contrast">Contrast</label>
 				<div class="slider-wrapper">
-					<input id="contrast" name="contrast" type="range" min="0" max="200" value="100">
+					<input id="contrast" name="contrast" type="range" min="0" max="200" value="100" data-initial="100">
 					<span class="value-imager"></span>
 				</div>
 				
 				<label for="grayscale">Grayscale</label>
 				<div class="slider-wrapper">
-					<input id="grayscale" name="grayscale" type="range" min="0" max="100" value="0">
+					<input id="grayscale" name="grayscale" type="range" min="0" max="100" value="0" data-initial="0">
 					<span class="value-imager"></span>
 				</div>
 				
 				<label for="opacity">Opacity</label>
 				<div class="slider-wrapper">
-					<input id="opacity" name="opacity" type="range" min="0" max="100" value="100">
+					<input id="opacity" name="opacity" type="range" min="0" max="100" value="100" data-initial="100">
 					<span class="value-imager"></span>
 				</div>
 				
-				<label for="sarurate">Saruration</label>
+				<label for="saturate">Saruration</label>
 				<div class="slider-wrapper">
-					<input id="sarurate" name="sarurate" type="range" min="1" max="200" value="100">
+					<input id="saturate" name="saturate" type="range" min="1" max="200" value="100" data-initial="100">
 					<span class="value-imager"></span>
 				</div>
 				
 				<label for="hue-rotate">Hue</label>
 				<div class="slider-wrapper">
-					<input id="hue-rotate" name="hue-rotate" type="range" min="0" max="359" value="0">
+					<input id="hue-rotate" name="hue-rotate" type="range" min="0" max="359" value="0" data-initial="0">
 					<span class="value-imager"></span>
 				</div>
 				
