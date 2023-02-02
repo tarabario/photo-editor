@@ -163,6 +163,16 @@ input[type='range']::-moz-range-thumb {
 		var(--hue-rotate)
 }
 
+#image-canvas {
+	filter:
+		var(--brightness)
+		var(--contrast)
+		var(--grayscale)
+		var(--saturate)
+		var(--opacity)
+		var(--hue-rotate)
+}
+
 .uploadButton {
 	cursor: pointer;
 }
