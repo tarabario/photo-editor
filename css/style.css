@@ -1,3 +1,5 @@
+#photo-container * {pointer-events: none;}
+
 :root {
 	--font-main: 'Roboto', sans-serif;
 	--font-color-main: rgb(230, 230, 230);
@@ -27,6 +29,10 @@ body {
 	background: var(--accent-color-dark);
 	font-family: var(--font-main);
 	font-weight: var(--fw-rg);
+	color: var(--font-color-main);
+}
+
+.fa-image {
 	color: var(--font-color-main);
 }
 
@@ -101,6 +107,16 @@ input[type='range']::-webkit-slider-thumb {
 	background: var(--accent-color-bright);
 	border: 1px solid var(--accent-color-dark);
 }
+
+input[type='range']::-moz-range-thumb {
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: var(--accent-color-bright);
+	border: 1px solid var(--accent-color-dark);
+}
+
 
 .value-imager {
 	transform: translate(0, -8px);

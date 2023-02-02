@@ -1,5 +1,12 @@
 const valueImagers = document.querySelectorAll('.value-imager');
 const settingInputs = document.querySelectorAll('input[type=range]');
+const droparea = document.querySelector('#photo-container');
+const dropareaChildren = droparea.children;
+const uploadIcon = droparea.querySelector('i');
+const uploadButton = document.querySelector('input[type=file]');
+
+
+const prevents = (e) => e.preventDefault();
 
 const setValueImagers = () => {
 	valueImagers.forEach(imager => {
@@ -17,25 +24,27 @@ const trackValueImagers = () => {
 	});
 };
 
+const hideUploadElements = () => {
+	[...dropareaChildren].slice(0, 3).forEach(child => {
+		child.setAttribute('hidden', '');
+	})
+};
 
-const dragAndDrop = () => {
-	const droparea = document.querySelector('#photo-container');
-	const dropareaChildren = droparea.children;
+const showUploadElements = () => {
+	[...dropareaChildren].slice(0, 3).forEach(child => {
+		child.removeAttribute('hidden');
+	})
+};
 
-	const prevents = (e) => e.preventDefault();
-	
-	const hideDropareaChildren = () => {
-		[...dropareaChildren].forEach(child => {
-			child.setAttribute('hidden', '');
-		})
-	};
+const hideUploadIcon = () => {
+	uploadIcon.setAttribute('hidden', '');
+}
 
-	const showDropareaChildren = () => {
-		[...dropareaChildren].forEach(child => {
-			child.removeAttribute('hidden');
-		})
-	};
+const showUploadIcon = () => {
+	uploadIcon.removeAttribute('hidden');
+}
 
+const uploadImage = () => {
 	const displayImage = (e) => {
 		let files;
 		if (e.type === 'drop') {
@@ -52,27 +61,31 @@ const dragAndDrop = () => {
 		droparea.appendChild(imageBox).appendChild(image);
 	};
 
-	['dragover', 'dragleave', 'drop', 'change'].forEach(evtName => {
-		droparea.addEventListener(evtName, prevents)
+	['dragenter', 'dragover', 'dragleave', 'drop', 'change'].forEach(evtName => {
+		droparea.addEventListener(evtName, prevents);
 	});
 
-	['dragover'].forEach(evtName => {
-		droparea.addEventListener(evtName, hideDropareaChildren)
+	['dragenter', 'dragover'].forEach(evtName => {
+		droparea.addEventListener(evtName, () => {
+			hideUploadElements();
+			showUploadIcon();
+			console.log('over');
+		})
 	});
 
-	['dragleave', 'drop'].forEach(evtName => {
-		droparea.addEventListener(evtName, showDropareaChildren)
+	droparea.addEventListener('dragleave', () => {
+			hideUploadIcon();
+			showUploadElements();
+			console.log('leave');
 	});
 
 	droparea.addEventListener('drop', (e) => {
-		hideDropareaChildren();
-		displayImage(e)
+		hideUploadElements();
+		displayImage(e);
 	});
-
-	const uploadButton = document.querySelector('input[type=file]');
-
+	
 	uploadButton.addEventListener('change', (e) => {
-		hideDropareaChildren();
+		hideUploadElements();
 		displayImage(e);
 	});
 }
@@ -81,7 +94,7 @@ const dragAndDrop = () => {
 const initApp = () => {
 	setValueImagers();
 	trackValueImagers();
-	dragAndDrop();
+	uploadImage();
 };
 
 document.addEventListener('DOMContentLoaded', initApp);
