@@ -7,13 +7,6 @@
 	--accent-color-bright: rgb(255, 75, 255);;
 	--accent-color-dark: #1e1e1e;
 	--fw-rg: 400;
-
-	--brightness: brightness(100%);
-	--contrast: contrast(100%);
-	--grayscale: grayscale(0%);
-	--saturate: saturate(100%);
-	--opacity: opacity(100%);
-	--hue-rotate: hue-rotate(0deg);
 }
 
 * {
@@ -154,24 +147,10 @@ input[type='range']::-moz-range-thumb {
 .image-box img {
 	max-width: 100%;
 	max-height: 100%;
-	filter:
-		var(--brightness)
-		var(--contrast)
-		var(--grayscale)
-		var(--saturate)
-		var(--opacity)
-		var(--hue-rotate)
 }
 
 #image-canvas {
 	display: none;
-	filter:
-		var(--brightness)
-		var(--contrast)
-		var(--grayscale)
-		var(--saturate)
-		var(--opacity)
-		var(--hue-rotate)
 }
 
 .uploadButton {

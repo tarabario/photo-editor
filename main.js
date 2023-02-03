@@ -13,6 +13,8 @@ const canvas = document.querySelector('#image-canvas');
 const context = canvas.getContext('2d');
 let fileName;
 
+
+
 const prevents = (e) => e.preventDefault();
 
 const hideUploadElements = () => {
@@ -46,12 +48,10 @@ const setValueImagers = () => {
 
 const trackValueImagers = () => {
 	settingInputs.forEach(input => {
-		['mousemove', 'change'].forEach(evtName => {
-			input.addEventListener(evtName, () => {
-			const imager = input.nextElementSibling;
-			imager.textContent = input.value;
-			input.value = imager.textContent;
-			});
+		input.addEventListener('input', () => {
+		const imager = input.nextElementSibling;
+		imager.textContent = input.value;
+		input.value = imager.textContent;
 		});
 	});
 };
@@ -104,17 +104,22 @@ const uploadImage = () => {
 }
 
 const editImage = () => {
+	const editing = () => {
+		let filterStr = '';
+		settingInputs.forEach(input => {
+			if (input.name === 'hue-rotate') {
+				filterStr += `${input.name}(${input.value}deg)`;
+			} else {
+				filterStr += `${input.name}(${input.value}%)`;
+			}
+		});
+		image.style.filter = filterStr;
+		context.filter = filterStr;
+		filterStr = '';
+	}
+
 	settingInputs.forEach(input => {
-		['mousemove', 'change'].forEach(evtName => {
-			input.addEventListener(evtName, () => {
-				if (input.name === 'hue-rotate') {
-					root.style.setProperty(`--${input.name}`, `${input.name}(${input.value}deg)`);
-				} else {
-					root.style.setProperty(`--${input.name}`, `${input.name}(${input.value}%)`);
-				}
-			})
-		})
-	
+		input.addEventListener('input', editing)
 	})
 }
 
@@ -127,21 +132,15 @@ const resetSettings = () => {
 			const relativeInput = imager.previousElementSibling;
 			imager.textContent = relativeInput.dataset.initial;
 		})
-		settingInputs.forEach(input => {
-			if (input.name === 'hue-rotate') {
-				root.style.setProperty(`--${input.name}`, `${input.name}(${input.dataset.initial}deg)`);
-			} else {
-				root.style.setProperty(`--${input.name}`, `${input.name}(${input.dataset.initial}%)`);
-			}
-		})
+		image.style.filter = '';
+		context.filter = '';
 	})
 }
 
 const saveImage = () => {
-	saveButton.addEventListener('click', async () => {
-		console.log(canvas.width, canvas.height);
+	saveButton.addEventListener('click', () => {
 		context.drawImage(image, 0, 0, canvas.width, canvas.height);
-		let jpegURL = await canvas.toDataURL('image/jpg')
+		let jpegURL = canvas.toDataURL('image/jpg')
 		const link = document.createElement('a');
 		link.href = jpegURL;
 		link.download = fileName;
