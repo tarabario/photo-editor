@@ -148,10 +148,10 @@ input[type='range']::-moz-range-thumb {
 }
 
 .image-box {
-	max-width: 500px;
+	max-width: 80%;
 }
 
-.source-image {
+.image-box img {
 	max-width: 100%;
 	max-height: 100%;
 	filter:
@@ -164,6 +164,7 @@ input[type='range']::-moz-range-thumb {
 }
 
 #image-canvas {
+	display: none;
 	filter:
 		var(--brightness)
 		var(--contrast)
@@ -176,3 +177,4 @@ input[type='range']::-moz-range-thumb {
 .uploadButton {
 	cursor: pointer;
 }
+

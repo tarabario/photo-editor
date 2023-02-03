@@ -11,6 +11,7 @@ const image = document.querySelector('.source-image');
 const imageBox = document.querySelector('.image-box');
 const canvas = document.querySelector('#image-canvas');
 const context = canvas.getContext('2d');
+let fileName;
 
 const prevents = (e) => e.preventDefault();
 
@@ -63,13 +64,16 @@ const uploadImage = () => {
 		} else if (e.type === 'change') {
 			files = e.target.files;
 		}
+		fileName = files[0].name;
 		image.src = URL.createObjectURL(files[0]);
-		image.alt = "haha";
-		canvas.height = image.naturalHeight;
-		canvas.width = image.naturalWidth;
-		canvas.removeAttribute('hidden');
-		imageBox.removeAttribute('hidden');
-		image.removeAttribute('hidden');
+		image.alt = "your image";
+		image.onload = () => {
+			canvas.width = image.naturalWidth;
+			canvas.height = image.naturalHeight;
+			imageBox.removeAttribute('hidden');
+			image.removeAttribute('hidden');
+		}
+		
 	};
 
 	['dragenter', 'dragover', 'dragleave', 'drop', 'change'].forEach(evtName => {
@@ -134,6 +138,18 @@ const resetSettings = () => {
 }
 
 const saveImage = () => {
+	saveButton.addEventListener('click', async () => {
+		console.log(canvas.width, canvas.height);
+		context.drawImage(image, 0, 0, canvas.width, canvas.height);
+		let jpegURL = await canvas.toDataURL('image/jpg')
+		const link = document.createElement('a');
+		link.href = jpegURL;
+		link.download = fileName;
+		link.click();
+		link.remove()
+	})
+	
+	
 }
 
 
