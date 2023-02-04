@@ -41,16 +41,18 @@ body {
 }
 
 #app-container {
-	min-width: 80%;
+	min-width: 70%;
+	max-width: 90%;
 	min-height: 60%;
+	max-height: 90%;
 	display: flex;
 	overflow: hidden;
-	border-radius: 40px;
+	border-radius: 20px;
 	box-shadow: 0 0 20px 5px #111111;
 }
 
 #photo-container {
-	width: 60%;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -69,10 +71,11 @@ body {
 
 
 #setting-container {
-	padding: 50px;
-	display: flex;
-	flex-direction: column;
+	display: none;
 	width: 40%;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 50px;
 	background: #535353;
 }
 
@@ -126,12 +129,23 @@ input[type='range']::-moz-range-thumb {
 #setting-buttons-wrapper {
 	margin-top: 10px;
 	display: flex;
-	justify-content: end;
+	justify-content: space-between;
 	align-items: center;
 }
 
 #setting-buttons-wrapper > * {
-	transform: scale(0.75);
+	transform: scale(80%)
+}
+
+#setting-buttons-wrapper > div {
+	display: flex;
+	align-items: center;
+	column-gap: 15px
+}
+
+.another-image-button {
+	background: var(--accent-color-bright);
+	border: none
 }
 
 .reset-button {

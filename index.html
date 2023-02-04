@@ -20,8 +20,8 @@
 			<div id="photo-container">
 				<p>Drag your image here</p>
 				<p>or</p>
-				<label for="file" class="upload-button button">select in folder</label>
-				<input type="file" id="file" name="file" accept="image/*" hidden>
+				<label for="image-file" class="upload-button button">select in folder</label>
+				<input type="file" id="image-file" name="image-file" accept="image/*" hidden>
 				<i class="fa-solid fa-image" hidden></i>
 				<canvas id="image-canvas"></canvas>
 				<div class="image-box"hidden>
@@ -30,45 +30,51 @@
 			</div>
 
 			<div id="setting-container">
-				<label for="brightness">Brightness</label>
-				<div class="slider-wrapper">
-					<input id="brightness" name="brightness" type="range" min="0" max="200" value="100" data-initial="100">
-					<span class="value-imager"></span>
-				</div>
-				
-				<label for="contrast">Contrast</label>
-				<div class="slider-wrapper">
-					<input id="contrast" name="contrast" type="range" min="0" max="200" value="100" data-initial="100">
-					<span class="value-imager"></span>
-				</div>
-				
-				<label for="grayscale">Grayscale</label>
-				<div class="slider-wrapper">
-					<input id="grayscale" name="grayscale" type="range" min="0" max="100" value="0" data-initial="0">
-					<span class="value-imager"></span>
-				</div>
-				
-				<label for="opacity">Opacity</label>
-				<div class="slider-wrapper">
-					<input id="opacity" name="opacity" type="range" min="0" max="100" value="100" data-initial="100">
-					<span class="value-imager"></span>
-				</div>
-				
-				<label for="saturate">Saruration</label>
-				<div class="slider-wrapper">
-					<input id="saturate" name="saturate" type="range" min="1" max="200" value="100" data-initial="100">
-					<span class="value-imager"></span>
-				</div>
-				
-				<label for="hue-rotate">Hue</label>
-				<div class="slider-wrapper">
-					<input id="hue-rotate" name="hue-rotate" type="range" min="0" max="359" value="0" data-initial="0">
-					<span class="value-imager"></span>
-				</div>
+				<div class="settings-sliders">
+					<label for="brightness">Brightness</label>
+					<div class="slider-wrapper">
+						<input id="brightness" name="brightness" type="range" min="0" max="200" value="100" data-initial="100">
+						<span class="value-imager"></span>
+					</div>
+					
+					<label for="contrast">Contrast</label>
+					<div class="slider-wrapper">
+						<input id="contrast" name="contrast" type="range" min="0" max="200" value="100" data-initial="100">
+						<span class="value-imager"></span>
+					</div>
+					
+					<label for="grayscale">Grayscale</label>
+					<div class="slider-wrapper">
+						<input id="grayscale" name="grayscale" type="range" min="0" max="100" value="0" data-initial="0">
+						<span class="value-imager"></span>
+					</div>
+					
+					<label for="opacity">Opacity</label>
+					<div class="slider-wrapper">
+						<input id="opacity" name="opacity" type="range" min="0" max="100" value="100" data-initial="100">
+						<span class="value-imager"></span>
+					</div>
+					
+					<label for="saturate">Saruration</label>
+					<div class="slider-wrapper">
+						<input id="saturate" name="saturate" type="range" min="1" max="200" value="100" data-initial="100">
+						<span class="value-imager"></span>
+					</div>
+					
+					<label for="hue-rotate">Hue</label>
+					<div class="slider-wrapper">
+						<input id="hue-rotate" name="hue-rotate" type="range" min="0" max="359" value="0" data-initial="0">
+						<span class="value-imager"></span>
+					</div>
+				</div >
 				
 				<div id="setting-buttons-wrapper">
-					<button class="reset-button button">reset</button>
-					<button class="save-button button">save</button>
+					<label for="another-image" class="another-image-button button">another image</label>
+					<input type="file" id="another-image" name="another-image" accept="image/*" hidden>
+					<div>
+						<button class="reset-button button">reset</button>
+						<button class="save-button button">save</button>
+					</div>
 				</div>
 			</div>
 		</div>

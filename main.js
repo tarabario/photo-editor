@@ -4,15 +4,20 @@ const settingInputs = document.querySelectorAll('input[type=range]');
 const droparea = document.querySelector('#photo-container');
 const dropareaChildren = droparea.children;
 const uploadIcon = droparea.querySelector('i');
-const uploadButton = document.querySelector('input[type=file]');
+const settingPanel = document.querySelector('#setting-container')
+
+const uploadButton = document.querySelector('#image-file');
+const anotherImageButton = document.querySelector('#another-image');
 const resetButton = document.querySelector('.reset-button');
 const saveButton = document.querySelector('.save-button');
+
 const image = document.querySelector('.source-image');
 const imageBox = document.querySelector('.image-box');
 const canvas = document.querySelector('#image-canvas');
 const context = canvas.getContext('2d');
 let fileName;
 
+console.log(anotherImageButton);
 
 
 const prevents = (e) => e.preventDefault();
@@ -56,6 +61,16 @@ const trackValueImagers = () => {
 	});
 };
 
+
+
+
+
+
+
+
+
+
+
 const uploadImage = () => {
 	const displayImage = (e) => {
 		let files;
@@ -73,35 +88,81 @@ const uploadImage = () => {
 			imageBox.removeAttribute('hidden');
 			image.removeAttribute('hidden');
 		}
-		
+		droparea.style.width = '60%';
+		settingPanel.style.display = 'flex';
 	};
 
-	['dragenter', 'dragover', 'dragleave', 'drop', 'change'].forEach(evtName => {
+	['dragenter', 'dragover', 'dragleave', 'drop'].forEach(evtName => {
 		droparea.addEventListener(evtName, prevents);
 	});
 
 	['dragenter', 'dragover'].forEach(evtName => {
 		droparea.addEventListener(evtName, () => {
-			hideUploadElements();
-			showUploadIcon();
+			if (image.src === document.location.href) {
+				hideUploadElements();
+				showUploadIcon();
+			} else {
+				droparea.style.filter = 'contrast(80%)';
+			}
 		})
 	});
 
 	droparea.addEventListener('dragleave', () => {
+		if (image.src === document.location.href) {
 			hideUploadIcon();
 			showUploadElements();
+		} else {
+			droparea.style.filter = null;
+		}
 	});
 
 	droparea.addEventListener('drop', (e) => {
-		hideUploadIcon();
-		displayImage(e);
+		if (image.src === document.location.href) {
+			hideUploadIcon();
+			displayImage(e);
+		} else {
+			const areYouSure = confirm("Are you sure you want to change the picture without saving?");
+			if (areYouSure) {
+				hideUploadIcon();
+				displayImage(e);
+			}
+			droparea.style.filter = null;
+		}
+	
 	});
 	
 	uploadButton.addEventListener('change', (e) => {
 		hideUploadElements();
 		displayImage(e);
 	});
+	
+	anotherImageButton.addEventListener('click', () => {
+		if (!(image.classList.contains('saved'))) {
+			const areYouSure = confirm("Are you sure you want to change the picture without saving?");
+			if (!areYouSure) {
+				anotherImageButton.disabled = true;
+				setTimeout(() => { anotherImageButton.disabled = false; }, 1);
+			} else {
+				anotherImageButton.addEventListener('change', (e) => {
+					displayImage(e);
+				})
+			}
+		} else {
+			anotherImageButton.addEventListener('change', (e) => {
+				displayImage(e);
+			})
+		}
+	})
 }
+
+
+
+
+
+
+
+
+
 
 const editImage = () => {
 	const editing = () => {
@@ -146,9 +207,8 @@ const saveImage = () => {
 		link.download = fileName;
 		link.click();
 		link.remove()
+		image.classList.add('saved');
 	})
-	
-	
 }
 
 
